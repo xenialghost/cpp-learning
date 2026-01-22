@@ -42,6 +42,13 @@ namespace operators_examples {
         char data[4096] = {};
     };
 
+    #pragma pack(push, 1)
+      class NoPadding {
+          int a = 0;
+          char b = 0;
+      };
+    #pragma pack(pop)
+
     auto run_alignof_operator() -> void {
         constexpr std::size_t example_length = 4;
         int raw_array[example_length];
@@ -117,6 +124,10 @@ namespace operators_examples {
             alignas(T) unsigned char storage[sizeof(T)]; or C++17 alignas(T) std::byte storage[sizeof(T)];
         };
          */
+
+        NoPadding a{};
+        static_assert(alignof(NoPadding) == sizeof(char));
+        static_assert(sizeof(NoPadding) == sizeof(char) + sizeof(int));
     }
 } // namespace operators_examples
 
