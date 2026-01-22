@@ -42,7 +42,7 @@ namespace operators_examples {
         char data[4096] = {};
     };
 
-    #pragma pack(push, 1)
+    #pragma pack(push, 1) // or __attribute__((packed))
       class NoPadding {
           int a = 0;
           char b = 0;
